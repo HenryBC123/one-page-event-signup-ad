@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- event-kit 海報範本（範例內容＝小室房屋 11/17 房東分享會）。
+     換掉：<title>、.photo 的講師照檔名、標題／副標、日期場次、講師、6 主題、費用名額地點、LINE ID、品牌、QR 檔名。
+     字體檔 NotoSansTC-Bold.ttf 要放在同資料夾（skill 的 assets/ 有）。出圖：scripts/render.sh poster.html poster.png 1080 1920 -->
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>小室房屋 屋主分享會（直式）</title>
+<style>
+@font-face { font-family: "NotoTC"; src: url("NotoSansTC-Bold.ttf"); font-weight: 700; }
+:root {
+  --bg: #1d1a17;
+  --beige: #e3cda8;
+  --white: #faf7f2;
+  --muted: #a69c90;
+  --todo: #e8a87c;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; background: var(--bg); }
+body { font-family: "NotoTC", "PingFang TC", sans-serif; font-weight: 700; color: var(--white); overflow: hidden; }
+
+.poster { position: relative; width: 1080px; height: 1920px; overflow: hidden;
+  background:
+    radial-gradient(900px 800px at 85% 25%, rgba(227,205,168,.16), transparent 70%),
+    radial-gradient(700px 600px at 10% 85%, rgba(227,205,168,.06), transparent 70%),
+    linear-gradient(165deg, #2a2520 0%, #1d1a17 55%, #161412 100%);
+}
+
+/* 講師照片：右上，往左、往下淡出 */
+.photo { position: absolute; right: -10px; top: 110px; width: 600px; height: 896px;
+  background: url("speaker-stand.jpg") center top / cover no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%), linear-gradient(0deg, transparent 0%, #000 22%), linear-gradient(180deg, transparent 0%, #000 12%);
+  -webkit-mask-composite: source-in, source-in; mask-composite: intersect; }
+
+.head { position: absolute; left: 72px; top: 100px; width: 620px; }
+.kicker { display: flex; align-items: center; gap: 14px; font-size: 32px; letter-spacing: 6px; }
+.kicker .q { color: var(--beige); font-size: 60px; line-height: 1; margin-top: 20px; }
+.title { margin-top: 30px; font-size: 136px; line-height: 1.08; letter-spacing: 4px; }
+.title .accent { color: var(--beige); }
+.sub { margin-top: 30px; font-size: 40px; letter-spacing: 3px; color: #e9e2d7; }
+.sub em { font-style: normal; color: var(--beige); }
+
+.date-badge { position: absolute; left: 72px; top: 700px; display: flex; align-items: center; gap: 22px; }
+.date-badge .d { font-size: 76px; color: var(--beige); letter-spacing: 1px; }
+.date-badge .w { font-size: 30px; line-height: 1.35; color: var(--white); }
+.date-badge .w small { display: block; font-size: 28px; color: var(--beige); letter-spacing: 1px; }
+
+.speaker { position: absolute; right: 64px; top: 850px; text-align: right; }
+.speaker .role { font-size: 24px; color: var(--beige); letter-spacing: 6px; }
+.speaker .name { font-size: 60px; margin-top: 6px; letter-spacing: 4px; }
+
+.topics { position: absolute; left: 72px; right: 72px; top: 1000px; display: grid; gap: 12px; }
+.t { display: flex; align-items: baseline; gap: 26px; padding: 14px 28px;
+  background: rgba(250,247,242,.05); border-left: 5px solid rgba(227,205,168,.5); border-radius: 6px; }
+.t .n { font-size: 30px; color: var(--beige); width: 46px; flex: none; }
+.t .k { font-size: 40px; flex: none; }
+.t .x { font-size: 26px; color: var(--muted); }
+.t.hl { background: var(--beige); border-left-color: var(--beige); }
+.t.hl .n, .t.hl .k { color: #2a231b; }
+.t.hl .x { color: #5a4c3a; }
+
+.info { position: absolute; left: 0; right: 0; bottom: 0; height: 330px; background: #141210;
+  border-top: 1px solid rgba(227,205,168,.25); padding: 34px 72px 0; }
+.row { display: flex; gap: 40px; font-size: 30px; line-height: 1.55; }
+.lab { color: var(--beige); margin-right: 14px; }
+.addr { display: block; }
+.addr small { display: block; font-size: 24px; color: var(--muted); margin-left: 76px; line-height: 1.3; }
+.cta { position: absolute; left: 72px; bottom: 40px; display: flex; align-items: center; gap: 28px; }
+.btn { background: var(--beige); color: #2a231b; font-size: 30px; padding: 14px 30px; border-radius: 999px; white-space: nowrap; }
+.brand .bn { font-size: 22px; line-height: 1.35; color: var(--muted); }
+.qr { position: absolute; right: 64px; top: 30px; width: 236px; text-align: center; }
+.qr img { display: block; width: 236px; height: 236px; border-radius: 12px; }
+.qr .cap { margin-top: 10px; font-size: 24px; color: var(--beige); letter-spacing: 3px; }
+.todo { color: var(--todo); }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="photo"></div>
+
+  <div class="head">
+    <div class="kicker"><span class="q">❝</span>屋主限定・房東分享會</div>
+    <div class="title">房東出租<br><span class="accent">全攻略</span></div>
+    <div class="sub">當個完全<em>躺平</em>的房東</div>
+  </div>
+
+  <div class="date-badge">
+    <div class="d">11/17</div>
+    <div class="w">週二・兩場次<small>下午 14:00–16:30</small><small>晚上 19:00–21:30</small></div>
+  </div>
+
+  <div class="speaker">
+    <div class="role">主講・小室房屋創辦人</div>
+    <div class="name">李秉誠</div>
+  </div>
+
+  <div class="topics">
+    <div class="t"><span class="n">01</span><span class="k">租客篩選</span><span class="x">挑到準時繳租的好房客</span></div>
+    <div class="t"><span class="n">02</span><span class="k">租約</span><span class="x">哪些條款一定要寫進去</span></div>
+    <div class="t"><span class="n">03</span><span class="k">欠租</span><span class="x">遇到拖欠，第一步怎麼做</span></div>
+    <div class="t"><span class="n">04</span><span class="k">修繕責任</span><span class="x">壞了誰修？一次分清楚</span></div>
+    <div class="t"><span class="n">05</span><span class="k">稅務</span><span class="x">房客申請補貼，到底有什麼影響？</span></div>
+    <div class="t hl"><span class="n">06</span><span class="k">提升租金</span><span class="x">讓房子租得快、租得高</span></div>
+  </div>
+
+  <div class="info">
+    <div class="row">
+      <div><span class="lab">費用</span>場地費 $200</div>
+      <div><span class="lab">名額</span>每場限 20 位</div>
+    </div>
+    <div class="row addr"><div><span class="lab">地點</span>台北市大同區民生西路105號2樓<small>Nextdoor Space 隔壁空間</small></div></div>
+    <div class="row"><div><span class="lab">LINE</span>ID：@847qcmyz</div></div>
+    <div class="cta">
+      <div class="btn">掃碼填表報名 →</div>
+      <div class="brand"><div class="bn">盛和不動產學院 ×<br>小室房屋 Little Things</div></div>
+    </div>
+    <div class="qr"><img src="form-qr.svg" alt="報名表單 QR code"><div class="cap">掃我報名</div></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<!-- event-kit 報名網頁範本（範例內容＝小室房屋 11/17 房東分享會）。
+     換掉：<title>／og 文字、hero、痛點、6 主題卡、講師區與照片、活動資訊、倒數時間、表單選項、成功訊息與 LINE 連結、頁尾品牌。
+     FORM_URL 與 entry.xxx 用 scripts/form_entries.py 從新表單取得；選項文字要與 Google 表單一字不差。 -->
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>房東出租全攻略｜小室房屋屋主分享會 11/17</title>
+<meta name="description" content="小室房屋創辦人李秉誠主講：租客篩選、租約、欠租、修繕責任、房客補貼與稅務、提升租金，一場講清楚。11/17 兩場次，每場限 20 位。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#1d1a17; --dark2:#141210; --beige:#e3cda8; --beige-d:#c9ad80;
+  --cream:#f7f2ea; --paper:#fffdf9; --ink:#2a231b; --muted:#7a6f62; --line:#e7ddcd;
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans TC","PingFang TC",sans-serif;color:var(--ink);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--beige);color:var(--ink);font-weight:700;font-size:18px;
+  padding:16px 34px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 24px rgba(227,205,168,.25)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(227,205,168,.35)}
+.eyebrow{font-size:14px;letter-spacing:.3em;color:var(--beige-d);font-weight:700}
+h2{font-size:clamp(26px,4.4vw,38px);font-weight:900;line-height:1.35;margin-top:10px}
+section{padding:80px 0}
+
+/* HERO */
+.hero{background:radial-gradient(800px 600px at 80% 30%,rgba(227,205,168,.16),transparent 70%),linear-gradient(165deg,#2a2520,var(--dark) 55%,#161412);color:#faf7f2;padding:0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;align-items:end;min-height:640px}
+.hero .txt{padding:72px 0}
+.kicker{font-size:16px;letter-spacing:.35em;color:#faf7f2;font-weight:700}
+.kicker::before{content:"❝";color:var(--beige);font-size:30px;margin-right:10px;vertical-align:-6px}
+.hero h1{font-size:clamp(52px,8.6vw,96px);font-weight:900;line-height:1.08;margin-top:18px;letter-spacing:.04em}
+.hero h1 span{color:var(--beige)}
+.hero .sub{font-size:clamp(20px,2.6vw,26px);font-weight:700;margin-top:18px;color:#e9e2d7}
+.hero .sub em{font-style:normal;color:var(--beige)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{border:1px solid rgba(227,205,168,.4);border-radius:999px;padding:7px 16px;font-size:15px;color:#efe6d8}
+.chip b{color:var(--beige)}
+.hero .btn{margin-top:34px}
+.hero .note{font-size:14px;color:#a69c90;margin-top:12px}
+.hero .photo{align-self:stretch;position:relative;min-height:420px}
+.hero .photo img{position:absolute;bottom:0;right:0;height:100%;width:100%;object-fit:cover;object-position:center top;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 30%),linear-gradient(0deg,transparent,#000 20%);-webkit-mask-composite:source-in;mask-composite:intersect}
+.hero .tag{position:absolute;right:8px;bottom:28px;text-align:right}
+.hero .tag small{display:block;font-size:13px;letter-spacing:.3em;color:var(--beige)}
+.hero .tag strong{font-size:30px;letter-spacing:.12em}
+
+/* PAIN */
+.pain{background:var(--paper)}
+.pain ul{list-style:none;margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pain li{background:var(--cream);border-radius:var(--r);padding:18px 20px 18px 54px;position:relative;font-weight:500}
+.pain li::before{content:"?";position:absolute;left:18px;top:18px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--beige);
+  font-size:14px;font-weight:900;display:grid;place-items:center;line-height:1}
+.pain .turn{margin-top:36px;font-size:20px;font-weight:700;text-align:center}
+.pain .turn span{background:linear-gradient(transparent 60%,var(--beige) 60%)}
+
+/* TOPICS */
+.topics{background:var(--cream)}
+.grid6{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px}
+.card .n{font-size:14px;font-weight:900;color:var(--beige-d);letter-spacing:.1em}
+.card h3{font-size:22px;font-weight:900;margin-top:6px}
+.card p{color:var(--muted);margin-top:6px;font-size:15.5px}
+.card.hl{background:var(--dark);border-color:var(--dark);color:#faf7f2}
+.card.hl .n{color:var(--beige)}.card.hl p{color:#cfc5b6}
+
+/* SPEAKER */
+.speaker{background:var(--dark);color:#faf7f2}
+.speaker .wrap{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:center}
+.speaker .ph{border-radius:20px;overflow:hidden;aspect-ratio:3/4;background:#2a2520}
+.speaker .ph img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.speaker .role{color:var(--beige);font-weight:700;letter-spacing:.2em;font-size:14px}
+.speaker h2{color:#faf7f2}
+.speaker p{color:#d7cebf;margin-top:16px;font-size:16.5px}
+.speaker blockquote{margin-top:22px;border-left:3px solid var(--beige);padding-left:16px;font-size:19px;font-weight:700;color:#faf7f2}
+
+/* INFO */
+.info{background:var(--paper)}
+.sessions{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ses{border:2px solid var(--line);border-radius:var(--r);padding:24px;text-align:center}
+.ses .lab{font-size:14px;font-weight:700;color:var(--beige-d);letter-spacing:.2em}
+.ses .t{font-size:30px;font-weight:900;margin-top:4px}
+.ses .d{color:var(--muted);font-size:15px}
+.facts{margin-top:22px;display:grid;gap:10px}
+.fact{display:flex;gap:16px;padding:14px 18px;background:var(--cream);border-radius:10px}
+.fact b{flex:none;width:52px;color:var(--beige-d)}
+.count{margin-top:28px;text-align:center}
+.count .lab{font-size:14px;color:var(--muted);letter-spacing:.2em;font-weight:700}
+.cd{display:flex;justify-content:center;gap:10px;margin-top:10px}
+.cd div{background:var(--dark);color:var(--beige);border-radius:10px;min-width:72px;padding:10px 6px}
+.cd strong{display:block;font-size:30px;font-weight:900;line-height:1.1}
+.cd span{font-size:12px;color:#cfc5b6}
+
+/* FORM */
+.signup{background:linear-gradient(180deg,var(--cream),#efe5d4)}
+.formbox{max-width:620px;margin:34px auto 0;background:var(--paper);border-radius:20px;padding:34px 30px;box-shadow:0 20px 50px rgba(42,35,27,.08)}
+.field{margin-bottom:20px}
+.field>label,.field>.q{display:block;font-weight:700;margin-bottom:8px}
+.req{color:#c0583a;margin-left:4px}
+.opt{color:var(--muted);font-weight:400;font-size:14px;margin-left:6px}
+input[type=text],input[type=tel],select,textarea{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--beige-d);box-shadow:0 0 0 3px rgba(227,205,168,.4)}
+textarea{min-height:90px;resize:vertical}
+.radios{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.radios label{border:1.5px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;text-align:center;font-weight:700;transition:.15s}
+.radios small{display:block;font-weight:400;color:var(--muted)}
+.radios input{position:absolute;opacity:0}
+.radios label:has(input:checked){border-color:var(--ink);background:var(--ink);color:var(--beige)}
+.radios label:has(input:checked) small{color:#cfc5b6}
+.err{color:#c0583a;font-size:14px;margin-top:6px;display:none}
+.field.bad .err{display:block}
+.field.bad input,.field.bad .radios label{border-color:#e3a08c}
+.formbox .btn{width:100%;font-size:19px;margin-top:6px}
+.privacy{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+.done{display:none;text-align:center;padding:10px 0}
+.done h3{font-size:24px;font-weight:900}
+.done p{color:var(--muted);margin-top:8px}
+.done .btn{margin-top:20px;width:auto;white-space:nowrap;font-size:16px;padding-left:22px;padding-right:22px}
+
+footer{background:var(--dark2);color:#a69c90;padding:40px 0;font-size:14px;text-align:center}
+footer strong{color:#faf7f2;font-size:18px;display:block;margin-bottom:8px}
+footer a{color:var(--beige);text-decoration:none}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(20,18,16,.96);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:none;z-index:9;align-items:center;justify-content:space-between;gap:12px}
+.sticky span{color:#efe6d8;font-size:14px;font-weight:700}
+.sticky .btn{padding:11px 22px;font-size:16px}
+
+@media (max-width:820px){
+  section{padding:60px 0}
+  .hero .wrap{grid-template-columns:1fr;min-height:0}
+  .hero .txt{padding:48px 0 0;position:relative;z-index:2}
+  .hero .photo{min-height:360px;margin:0 -20px}
+  .hero .photo img{-webkit-mask-image:linear-gradient(180deg,transparent,#000 25%),linear-gradient(0deg,transparent,#000 12%)}
+  .pain ul,.grid6,.sessions{grid-template-columns:1fr}
+  .speaker .wrap{grid-template-columns:1fr;gap:28px}
+  .speaker .ph{max-width:260px}
+  .formbox{padding:26px 18px}
+  .sticky{display:flex}
+  footer{padding-bottom:90px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="txt">
+      <div class="kicker">屋主限定・房東分享會</div>
+      <h1>房東出租<br><span>全攻略</span></h1>
+      <p class="sub">當個完全<em>躺平</em>的房東</p>
+      <div class="chips">
+        <div class="chip"><b>11/17（二）</b>兩場次</div>
+        <div class="chip">台北・大同區</div>
+        <div class="chip">每場限 <b>20</b> 位</div>
+      </div>
+      <a class="btn" href="#signup">立即報名 →</a>
+      <p class="note">場地費 NT$200・線上填表 1 分鐘完成</p>
+    </div>
+    <div class="photo">
+      <img src="speaker.jpg" alt="主講人 李秉誠">
+      <div class="tag"><small>主講・小室房屋創辦人</small><strong>李秉誠</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="wrap">
+    <div class="eyebrow">YOU MIGHT BE HERE</div>
+    <h2>當房東，你是不是也遇過這些事？</h2>
+    <ul>
+      <li>房客看起來不錯，住進來才發現問題一堆</li>
+      <li>租約是網路抄的，出事才發現該寫的沒寫到</li>
+      <li>房租遲遲沒進帳，不知道該怎麼開口催</li>
+      <li>熱水器壞了、牆壁漏水，到底該誰出錢？</li>
+      <li>房客說要申請租金補貼，不知道會不會影響到你</li>
+      <li>租金好幾年沒調，怕一漲房客就跑了</li>
+    </ul>
+    <p class="turn"><span>這些事，其實都有方法。</span>一個下午，一次講清楚。</p>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="topics">
+  <div class="wrap">
+    <div class="eyebrow">WHAT YOU'LL LEARN</div>
+    <h2>2.5 小時，房東出租六大關鍵</h2>
+    <div class="grid6">
+      <div class="card"><div class="n">01</div><h3>租客篩選</h3><p>挑到準時繳租、優質的好租客</p></div>
+      <div class="card"><div class="n">02</div><h3>租約</h3><p>哪些條款一定要寫進去，保護你也保護房子</p></div>
+      <div class="card"><div class="n">03</div><h3>欠租</h3><p>遇到拖欠，第一步怎麼做才不吃虧</p></div>
+      <div class="card"><div class="n">04</div><h3>修繕責任</h3><p>壞了誰修？房東、房客一次分清楚</p></div>
+      <div class="card"><div class="n">05</div><h3>稅務</h3><p>房客申請補貼，到底有什麼影響？</p></div>
+      <div class="card hl"><div class="n">06</div><h3>提升租金</h3><p>讓房子租得快、租得高的實戰做法</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKER -->
+<section class="speaker">
+  <div class="wrap">
+    <div class="ph"><img src="speaker.jpg" alt="李秉誠"></div>
+    <div>
+      <div class="role">主講人</div>
+      <h2>李秉誠｜小室房屋創辦人</h2>
+      <p>小室房屋是台北的出租代管團隊，每天處理的就是招租、收租、修繕、房客溝通這些房東最頭痛的事。這場分享會，把第一線遇到的真實狀況和處理方法，整理給房東。</p>
+      <blockquote>房子交給我們，好好生活交給你。</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info">
+  <div class="wrap">
+    <div class="eyebrow">EVENT INFO</div>
+    <h2>活動資訊</h2>
+    <div class="sessions">
+      <div class="ses"><div class="lab">下午場</div><div class="t">14:00–16:30</div><div class="d">11/17（二）</div></div>
+      <div class="ses"><div class="lab">晚上場</div><div class="t">19:00–21:30</div><div class="d">11/17（二）</div></div>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>地點</b><span>台北市大同區民生西路105號2樓（Nextdoor Space 隔壁空間）</span></div>
+      <div class="fact"><b>費用</b><span>場地費 NT$200</span></div>
+      <div class="fact"><b>名額</b><span>每場限 20 位，額滿即止</span></div>
+      <div class="fact"><b>對象</b><span>已在出租、準備出租，或正在考慮委託代管的屋主</span></div>
+    </div>
+    <div class="count">
+      <div class="lab">距離下午場開始</div>
+      <div class="cd" id="cd"><div><strong id="cd-d">--</strong><span>天</span></div><div><strong id="cd-h">--</strong><span>時</span></div><div><strong id="cd-m">--</strong><span>分</span></div><div><strong id="cd-s">--</strong><span>秒</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP FORM -->
+<section class="signup" id="signup">
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center">REGISTER</div>
+    <h2 style="text-align:center">填寫報名資料</h2>
+    <div class="formbox">
+      <form id="f" novalidate>
+        <div class="field" data-k="name">
+          <label for="name">姓名<span class="req">*</span></label>
+          <input type="text" id="name" autocomplete="name" placeholder="怎麼稱呼你">
+          <div class="err">請填寫姓名</div>
+        </div>
+        <div class="field" data-k="phone">
+          <label for="phone">手機<span class="req">*</span></label>
+          <input type="tel" id="phone" autocomplete="tel" inputmode="numeric" placeholder="0912345678">
+          <div class="err">請填寫正確的手機號碼（09 開頭 10 碼）</div>
+        </div>
+        <div class="field" data-k="session">
+          <div class="q">想參加的場次<span class="req">*</span></div>
+          <div class="radios">
+            <label><input type="radio" name="session" value="下午場 14:00–16:30">下午場<small>14:00–16:30</small></label>
+            <label><input type="radio" name="session" value="晚上場 19:00–21:30">晚上場<small>19:00–21:30</small></label>
+          </div>
+          <div class="err">請選擇場次</div>
+        </div>
+        <div class="field">
+          <label for="status">你目前的狀況<span class="opt">選填</span></label>
+          <select id="status">
+            <option value="">請選擇</option>
+            <option>已經在出租，自己管</option>
+            <option>已委託代管／包租</option>
+            <option>房子空著，準備出租</option>
+            <option>還沒有房子，先來了解</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ask">最想問講師的問題<span class="opt">選填</span></label>
+          <textarea id="ask" placeholder="例如：房客說要申請租金補貼，我需要配合什麼？"></textarea>
+        </div>
+        <button class="btn" type="submit">送出報名</button>
+        <p class="privacy">資料僅用於本次活動聯繫，我們會在活動前跟你確認場次。</p>
+      </form>
+      <div class="done" id="done">
+        <h3>報名成功 🙌</h3>
+        <p>我們會在活動前透過 LINE 或電話跟你確認場次，11/17 見！<br>想先聊聊房子的事？歡迎加入盛和不動產學院官方 LINE@。</p>
+        <a class="btn" href="https://lin.ee/n1WP4jo8">加入盛和不動產學院官方 LINE@</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>盛和不動產學院 ×<br>小室房屋 Little Things</strong>
+    LINE ID：<a href="https://line.me/R/ti/p/@847qcmyz">@847qcmyz</a>
+  </div>
+</footer>
+
+<div class="sticky"><span>11/17 房東分享會・每場限 20 位</span><a class="btn" href="#signup">立即報名</a></div>
+
+<script>
+// 倒數：下午場開始時間
+(function(){
+  var t = new Date("2026-11-17T14:00:00+08:00").getTime();
+  function pad(n){return n<10?"0"+n:n}
+  function tick(){
+    var s = Math.max(0, Math.floor((t - Date.now())/1000));
+    document.getElementById("cd-d").textContent = Math.floor(s/86400);
+    document.getElementById("cd-h").textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById("cd-m").textContent = pad(Math.floor(s%3600/60));
+    document.getElementById("cd-s").textContent = pad(s%60);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+// 報名：驗證後送進 Google 表單（名單自動進試算表）
+(function(){
+  var FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeWFs6gQr9u-AY1P5B1Fp-jl02vvojKE-7zzLnuYfaGuuQGzw/formResponse";
+  var f = document.getElementById("f");
+  function val(id){return document.getElementById(id).value.trim()}
+  function mark(k, bad){ document.querySelector('.field[data-k="'+k+'"]').classList.toggle("bad", bad); return !bad; }
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = val("name"), phone = val("phone").replace(/[\s-]/g,"");
+    var ses = f.querySelector('input[name=session]:checked');
+    var ok = [mark("name", !name), mark("phone", !/^09\d{8}$/.test(phone)), mark("session", !ses)].every(Boolean);
+    if(!ok){ f.querySelector(".field.bad").scrollIntoView({behavior:"smooth",block:"center"}); return; }
+    var data = new URLSearchParams();
+    data.append("entry.445785637", name);
+    data.append("entry.784756758", phone);
+    data.append("entry.1686005104", ses.value);
+    if(val("status")) data.append("entry.1743073070", val("status"));
+    if(val("ask")) data.append("entry.113475665", val("ask"));
+    var btn = f.querySelector("button[type=submit]");
+    btn.disabled = true; btn.textContent = "送出中…";
+    fetch(FORM_URL, {method: "POST", mode: "no-cors", body: data}).then(function(){
+      f.style.display = "none"; document.getElementById("done").style.display = "block";
+    }).catch(function(){
+      btn.disabled = false; btn.textContent = "送出報名";
+      alert("網路好像不太穩，請再按一次送出；或直接 LINE 我們 @847qcmyz");
+    });
+  });
+})();
+</script>
+</body>
+</html>
