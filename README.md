@@ -1,4 +1,4 @@
-# event-kit｜活動招生套組
+# 一頁式活動報名廣告（event-kit）
 
 Claude Code skill：辦講座、分享會時，一次做出整套招生素材。
 
